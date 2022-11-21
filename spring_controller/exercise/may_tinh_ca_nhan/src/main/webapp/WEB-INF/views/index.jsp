@@ -19,49 +19,51 @@
     <table>
         <tr>
             <th>
-                <input onclick="myf()"  value="Addition(+)" id="1" type="button">
+                <input name="chose"  value="Addition(+)" id="1" type="submit">
             </th>
             <th>
-                <input value="Subtraction(-)" id="2" type="button">
+                <input  name="chose" value="Subtraction(-)" id="2" type="submit">
             </th>
             <th>
-                <input value="Multiplication(x)" id="3" type="button">
+                <input name="chose" value="Multiplication(x)" id="3" type="submit">
             </th>
             <th>
-                <input value="Division(/)" id="4"  type="button">
+                <input name="chose" value="Division(/)" id="4"  type="submit">
             </th>
         </tr>
     </table>
 </form>
-<p id="ketqua"></p>
-<p id="ketqua1"></p>
-<%--<c:choose>--%>
-<%--    <c:when test="Addition(+)">--%>
+<p> kết quả : ${result}</p>
 
-<%--    </c:when>--%>
-<%--    <c:when test="Subtraction(-)">--%>
-<%--        <p>kết quả là : ${result2}</p>--%>
-<%--    </c:when>--%>
-<%--    <c:when test="Multiplication(x)">--%>
-<%--        <p>kết quả là : ${result3}</p>--%>
-<%--    </c:when>--%>
-<%--    <c:when test="Division(/)">--%>
-<%--        <p>kết quả là : ${result4}</p>--%>
+<%--<p id="ketqua1"></p>--%>
+<%--&lt;%&ndash;<c:choose>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    <c:when test="Addition(+)">&ndash;%&gt;--%>
 
-<%--    </c:when>--%>
-<%--</c:choose>--%>
-<script>
-    function myf() {
- // let a = document.getElementById("numberOne").value  ;
- // a = Number(a);
- //   let b =     document.getElementById("numberTwo").value ;
- //   b= Number(b);
-   document.getElementById("ketqua").innerHTML = "kết quả là"+ ${result1};
-    }
-    function myT() {
-document.getElementById("ketqua1").innerHTML = "kết quả là " + ${result2} ;
-    }
-</script>
+<%--&lt;%&ndash;    </c:when>&ndash;%&gt;<p id="ketqua"></p>--%>
+
+<%--&lt;%&ndash;    <c:when test="Subtraction(-)">&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <p>kết quả là : ${result2}</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    <c:when test="Multiplication(x)">&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <p>kết quả là : ${result3}</p>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;    <c:when test="Division(/)">&ndash;%&gt;--%>
+<%--&lt;%&ndash;        <p>kết quả là : ${result4}</p>&ndash;%&gt;--%>
+
+<%--&lt;%&ndash;    </c:when>&ndash;%&gt;--%>
+<%--&lt;%&ndash;</c:choose>&ndash;%&gt;--%>
+<%--<script>--%>
+<%--    function myf() {--%>
+<%-- // let a = document.getElementById("numberOne").value  ;--%>
+<%-- // a = Number(a);--%>
+<%-- //   let b =     document.getElementById("numberTwo").value ;--%>
+<%-- //   b= Number(b);--%>
+<%--   document.getElementById("ketqua").innerHTML = "kết quả là"+ ${result1};--%>
+<%--    }--%>
+<%--    function myT() {--%>
+<%--document.getElementById("ketqua1").innerHTML = "kết quả là " + ${result2} ;--%>
+<%--    }--%>
+<%--</script>--%>
 </body>
 
 </html>
