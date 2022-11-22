@@ -15,6 +15,9 @@
     <title>Title</title>
 </head>
 <body>
+<span style="color: red">
+    ${mess}
+</span>
 <table class="table">
     <thead>
     <tr>

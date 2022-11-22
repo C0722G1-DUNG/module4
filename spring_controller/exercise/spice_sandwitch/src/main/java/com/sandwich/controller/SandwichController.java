@@ -20,9 +20,9 @@ public class SandwichController  {
    return "/index";
     }
     @PostMapping("/sandwich")
-    public String sandwich(Model model , @RequestParam("choise") String[] choise){
-//       List<String> result =  iSandwichService.choise(choise);
-       model.addAttribute("result",Arrays.toString(choise));
+    public String sandwich(Model model , @RequestParam("choise") String choise){
+       List<String> result =  iSandwichService.choise(choise);
+       model.addAttribute("result",result);
         return "/index";
     }
 

@@ -41,7 +41,7 @@ public class EmailController {
     public String edit(Email email , RedirectAttributes redirectAttributes){
         iEmailService.update(email);
         redirectAttributes.addFlashAttribute("mess","cập nhật thành công");
-        return "redirect:email/list";
+        return "redirect:/";
     }
 
 }
