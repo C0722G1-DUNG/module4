@@ -28,7 +28,7 @@ public class EmailController {
     }
 
     @GetMapping("/update")
-    public String showEdit(@RequestParam("id") int id ,Model model){
+    public String showEdit(@RequestParam(value = "id") int id ,Model model){
         Email email = iEmailService.findById(id);
         List<String> languagesList = Arrays.asList("English", "Vietnamese", "Japanese", "Chinese");
         List<Integer> pageSizeList = Arrays.asList(5,10,15,20,25);
