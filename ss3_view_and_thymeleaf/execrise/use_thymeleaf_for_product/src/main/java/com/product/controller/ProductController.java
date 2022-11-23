@@ -19,8 +19,8 @@ public class ProductController {
     @Autowired
     private IProductService iProductService;
     @GetMapping()
-    public String finAll(Model model){
-        List<Product> productList = iProductService.findAll();
+    public String finAll(String nameProduct, Model model){
+        List<Product> productList = iProductService.findAllAndSearch(nameProduct);
         model.addAttribute("productList",productList);
         return "/index";
     }
@@ -42,5 +42,16 @@ public class ProductController {
         iProductService.update(product);
         redirectAttributes.addFlashAttribute("messages","update thanh cong");
         return "redirect:/product";
+}
+@GetMapping("/create")
+    public String showCreateForm(Model model){
+        model.addAttribute("product",new Product());
+        return "/create";
+}
+@PostMapping("/create")
+    public String create(Product product, RedirectAttributes redirectAttributes){
+        iProductService.create(product);
+        redirectAttributes.addFlashAttribute("messages","thêm mới thành công");
+        return "redirect:/product/create";
 }
 }

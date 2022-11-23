@@ -12,8 +12,8 @@ public class ProductService implements IProductService {
     @Autowired
     private IPRoductRepository ipRoductRepository;
     @Override
-    public List<Product> findAll() {
-        return ipRoductRepository.findAll();
+    public List<Product> findAllAndSearch(String nameProduct) {
+        return ipRoductRepository.findAllAndSearch(nameProduct==null?"":nameProduct);
     }
 
     @Override
@@ -29,5 +29,10 @@ public class ProductService implements IProductService {
     @Override
     public void update(Product product) {
         ipRoductRepository.update(product);
+    }
+
+    @Override
+    public void create(Product product) {
+        ipRoductRepository.create(product);
     }
 }

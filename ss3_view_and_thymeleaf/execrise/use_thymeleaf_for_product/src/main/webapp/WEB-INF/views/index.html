@@ -16,6 +16,11 @@
 </head>
 <body>
 <div th:replace="/layout::header"></div>
+<form class="d-flex">
+    <input name="nameProduct" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+<a th:href="@{/product/create}">add new</a>
 <p th:text="${messages}" style="color: red"></p>
 <table class="table">
     <thead>

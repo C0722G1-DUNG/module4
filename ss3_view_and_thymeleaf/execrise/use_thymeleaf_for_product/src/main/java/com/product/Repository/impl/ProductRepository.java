@@ -11,14 +11,20 @@ public class ProductRepository implements IPRoductRepository {
     private static List<Product> productList = new ArrayList<>();
     static {
         productList.add(new Product(1,"iphone14",25,"iphone 14promax","CHINA"));
-        productList.add(new Product(2,"iphone13",20,"iphone 13promax","VIỆT NAM"));
-        productList.add(new Product(3,"iphone12",18,"iphone 12promax","JAPAN"));
-        productList.add(new Product(4,"iphone11",12,"iphone 11promax",""));
+        productList.add(new Product(2,"Samsung",20,"iphone 13promax","VIỆT NAM"));
+        productList.add(new Product(3,"Nokia",18,"iphone 12promax","JAPAN"));
+        productList.add(new Product(4,"ipad",12,"iphone 11promax",""));
         productList.add(new Product(5,"iphone10",8,"iphone 10promax","Dung"));
     }
     @Override
-    public List<Product> findAll() {
-        return productList;
+    public List<Product> findAllAndSearch(String nameProduct) {
+        List<Product> products = new ArrayList<>();
+        for (int i = 0; i <productList.size(); i++) {
+            if (productList.get(i).getNameProduct().contains(nameProduct)){
+                products.add(productList.get(i));
+            }
+        }
+        return products;
     }
 
     @Override
@@ -48,5 +54,11 @@ public class ProductRepository implements IPRoductRepository {
        product1.setPriceProduct(product.getPriceProduct());
        product1.setDescriptionProduct(product.getDescriptionProduct());
        product1.setProducer(product.getProducer());
+    }
+
+    @Override
+    public void create(Product product) {
+        productList.add(product);
+
     }
 }
