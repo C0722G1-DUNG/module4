@@ -19,8 +19,8 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Optional<Blog> findById(Long id) {
-        return Optional.empty();
+    public Optional<Blog> findById(Integer id) {
+        return iBlogRepository.findById(id);
     }
 
     @Override
@@ -29,7 +29,7 @@ iBlogRepository.save(blog);
     }
 
     @Override
-    public void remove(Long id) {
-
+    public void remove(Integer id) {
+        iBlogRepository.deleteById(id);
     }
 }
