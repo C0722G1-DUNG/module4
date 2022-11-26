@@ -1,0 +1,41 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/blog/create">Create new Blog</a>
+<h1>Customers</h1>
+<table border="1">
+    <tr>
+        <th>STT</th>
+        <th>author</th>
+        <th>title</th>
+        <th>dayUpdate</th>
+        <th>view</th>
+        <th>DELETE</th>
+        <th>UPDATE</th>
+    </tr>
+    <th:block th:each="blog,varStatus : ${blogList}">
+        <tr>
+            <td th:text="${varStatus.count}"></td>
+            <td th:text="${blog.author}"></td>
+            <td th:text="${blog.title}"></td>
+            <td th:text="${blog.dayUpdate}"></td>
+            <td>
+                <a th:href="@{/blog/view(id=${blog.id})}">View</a>
+            </td>
+<!--            <td>-->
+<!--                &lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--                <button th:onclick="'deleteById('+${blog.id}+',\''+${blog.author}+'\')'"  type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--                    Delete-->
+<!--                </button>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--                <a th:href="@{/product/update(id=${blog.id})}" class="btn btn-primary" >Update</a>-->
+<!--            </td>-->
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

@@ -48,7 +48,7 @@ public class ProductRepository implements IPRoductRepository {
         try {
             session = ConnectionUtil.sessionFactory.openSession();
             transaction=session.beginTransaction();
-            product = (Product) session.createQuery(" FROM Product p where id = :deleteById").setParameter("deleteById",id).getSingleResult();
+            product = (Product) session.createQuery(" FROM Product p where id = :id").setParameter("id",id).getSingleResult();
         session.remove(product);
 //        thực hiện song phải commit để lưu lại tiến trình
         transaction.commit();
