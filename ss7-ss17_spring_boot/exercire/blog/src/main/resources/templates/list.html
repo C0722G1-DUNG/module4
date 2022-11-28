@@ -7,7 +7,7 @@
 </head>
 <body>
 <div th:replace="/layout::header"></div>
-<a href="/blog/create">Create new Blog</a>
+<a class="btn btn-danger" href="/blog/create">Create new Blog</a>
 <span th:text="${messages}"></span>
 <h1>Customers</h1>
 <table  class="table">
@@ -17,6 +17,7 @@
         <th>author</th>
         <th>title</th>
         <th>dayUpdate</th>
+        <th>Category</th>
         <th>view</th>
         <th>DELETE</th>
         <th>UPDATE</th>
@@ -25,10 +26,11 @@
     <tbody>
     <th:block th:each="blog,varStatus : ${blogList}">
         <tr>
-            <td th:text="${varStatus.count}"></td>
+            <td th:text="${varStatus.count}+${blogList.number}*${blogList.getTotalPages()}"></td>
             <td th:text="${blog.author}"></td>
             <td th:text="${blog.content}"></td>
             <td th:text="${blog.dayUpdate}"></td>
+            <td th:text="${blog.Category.nameCategory}"></td>
             <td>
                 <a th:href="@{/blog/view(id=${blog.id})}" class="btn btn-dark">View</a>
             </td>
@@ -45,6 +47,15 @@
     </th:block>
     </tbody>
 </table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li  class="page-item"><a th:href="@{'/blog'(page=${blogList.number-1})}" th:if="${blogList.hasPrevious()}" class="page-link">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li  class="page-item"><a th:href="@{'/blog'(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}" class="page-link" >Next</a></li>
+    </ul>
+</nav>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
