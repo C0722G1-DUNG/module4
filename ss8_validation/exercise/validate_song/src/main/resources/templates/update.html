@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Congratulations</title>
+</head>
+<body>
+<form action="/music/update" method="post" th:object="${music}">
+    <input type="hidden" th:field="*{id}">
+
+    <label th:for="nameMusic">nameMusic</label>
+    <input th:field="*{nameMusic}">
+    <p  th:errors="*{nameMusic}" class="text-danger"></p>
+
+    <label th:for="performingArtist">performingArtist</label>
+    <input th:field="*{performingArtist}">
+    <p  th:errors="*{performingArtist}" class="text-danger"></p>
+
+
+    <label th:for="musicGenre">musicGenre</label>
+    <input th:field="*{musicGenre}">
+    <p class="text-danger" th:errors="*{musicGenre}"></p>
+
+    <input type="submit" th:value="luu">
+</form>
+
+</body>
+</html>

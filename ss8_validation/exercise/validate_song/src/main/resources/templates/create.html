@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form</title>
+</head>
+<body>
+<a th:href="@{/music}">quay lại list</a>
+<span th:text="${mess}" style="color: red"></span>
+<form th:object="${music}" th:action="@{/music/create}" method="post" >
+    <table>
+        <tr>
+
+            <td>
+                <label th:for="nameMusic">Name:</label>
+            <input th:field="*{nameMusic}"></td>
+            <td>
+                <p  th:errors="*{nameMusic}" class="text-danger"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label th:for="performingArtist">performingArtist:</label>
+            <input th:field="*{performingArtist}"></td>
+            <td>
+                <p  th:errors="*{performingArtist}" class="text-danger"></p>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <label th:for="musicGenre">musicGenre:</label>
+            <input th:field="*{musicGenre}"></td>
+            <td>
+                <p class="text-danger" th:errors="*{musicGenre}"></p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Submit</button>
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
