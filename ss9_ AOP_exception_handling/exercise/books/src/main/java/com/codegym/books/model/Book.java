@@ -9,17 +9,15 @@ public class Book  {
     private String nameBook;
     private String content;
     private int amount;
-    @ManyToOne
-    private Oder oder;
+
     public Book() {
     }
 
-    public Book(int id, String nameBook, String content, int amount, Oder oder) {
+    public Book(int id, String nameBook, String content, int amount) {
         this.id = id;
         this.nameBook = nameBook;
         this.content = content;
         this.amount = amount;
-        this.oder = oder;
     }
 
     public int getId() {
@@ -52,13 +50,5 @@ public class Book  {
 
     public void setAmount(int amount) {
         this.amount = amount;
-    }
-
-    public Oder getOder() {
-        return oder;
-    }
-
-    public void setOder(Oder oder) {
-        this.oder = oder;
     }
 }

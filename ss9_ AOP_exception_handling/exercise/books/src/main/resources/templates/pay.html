@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
+<a th:href="@{/book}">Quay lại trang list</a>
+<form action="/book/pay" method="post" th:object="${book}">
+    <input type="hidden" th:field="*{id}">
 
+    <label th:for="nameBook">nameBook</label>
+    <input readonly th:field="*{nameBook}">
+
+    <label th:for="content">content</label>
+    <input readonly th:field="*{content}">
+    <label th:for="amount">amount</label>
+    <input readonly th:field="*{amount}">
+
+    <label th:for="nameCode">nameCode</label>
+    <input name="nameCode" >
+    <input type="submit" th:value="luu">
+</form>
 </body>
 </html>

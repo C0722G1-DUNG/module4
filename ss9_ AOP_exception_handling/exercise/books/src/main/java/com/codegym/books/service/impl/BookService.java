@@ -37,7 +37,8 @@ iBookRepository.deleteById(id);
     }
 
     @Override
-    public void nameCode(int name_code) {
-        iBookRepository.nameCode(name_code);
+    public void payBook(int id) {
+        iBookRepository.payBook(id);
     }
+
 }

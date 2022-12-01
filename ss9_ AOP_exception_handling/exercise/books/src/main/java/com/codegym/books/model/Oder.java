@@ -1,9 +1,6 @@
 package com.codegym.books.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Oder {
@@ -11,13 +8,18 @@ public class Oder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private double nameCode;
+    @ManyToOne
+    @JoinColumn(name = "book_id",referencedColumnName = "id")
+
+    private  Book book;
 
 
     public Oder() {
     }
 
-    public Oder( double nameCode) {
+    public Oder(double nameCode, Book book) {
         this.nameCode = nameCode;
+        this.book = book;
     }
 
     public int getId() {
@@ -34,5 +36,13 @@ public class Oder {
 
     public void setNameCode(double nameCode) {
         this.nameCode = nameCode;
+    }
+
+    public Book getBook() {
+        return book;
+    }
+
+    public void setBook(Book book) {
+        this.book = book;
     }
 }
