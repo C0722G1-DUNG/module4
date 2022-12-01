@@ -3,7 +3,7 @@
     <title>Congratulations</title>
 </head>
 <body>
-<form action="/music/update" method="post" th:object="${music}">
+<form action="/music/update" method="post" th:object="${musicDto}" >
     <input type="hidden" th:field="*{id}">
 
     <label th:for="nameMusic">nameMusic</label>

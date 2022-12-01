@@ -1,5 +1,8 @@
 package com.codegym.validate_song.model;
 
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,21 +12,12 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Music {
+public class Music{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id ;
-    @NotBlank(message = "không được để trống")
-    @Size(min = 0,max = 800 , message = "ký tự không vượt quá 800")
-    @Pattern(regexp = "[a-z0-9]+",message = "không chứa kí tự đặc biệt")
+    private int id;
     private String nameMusic;
-    @NotBlank(message = "không được để trống")
-    @Size(min = 0,max = 800 , message = "ký tự không vượt quá 800")
-    @Pattern(regexp = "[a-z0-9]+",message = "không chứa kí tự đặc biệt")
     private String performingArtist;
-    @NotBlank(message = "không được để trống")
-    @Size(min = 0,max = 800 , message = "ký tự không vượt quá 800")
-    @Pattern(regexp = "[a-z0-9]+",message = "không chứa kí tự đặc biệt")
     private String musicGenre;
 
     public Music(int id, String nameMusic, String performingArtist, String musicGenre) {
@@ -67,4 +61,5 @@ public class Music {
     public void setMusicGenre(String musicGenre) {
         this.musicGenre = musicGenre;
     }
+
 }

@@ -6,7 +6,7 @@
 <body>
 <a th:href="@{/music}">quay lại list</a>
 <span th:text="${mess}" style="color: red"></span>
-<form th:object="${music}" th:action="@{/music/create}" method="post" >
+<form th:object="${musicDto}" th:action="@{/music/create}" method="post" >
     <table>
         <tr>
 
