@@ -1,6 +1,7 @@
 package com.codegym.cart.model;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Product {
@@ -50,4 +51,5 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
-    }}
+    }
+}

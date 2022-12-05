@@ -14,4 +14,9 @@ public interface IOderRepository extends JpaRepository<Oder,Integer> {
     @Transactional
     @Query(value = "SELECT name_code FROM oder",nativeQuery = true)
     List<Double> showCode();
+    @Modifying
+    @Transactional
+    @Query(value="DELETE FROM`oder` WHERE `id` =:id",nativeQuery = true)
+    void deleteOderById(@Param("id") int id);
+    Oder findByNameCode(double nameCode);
 }

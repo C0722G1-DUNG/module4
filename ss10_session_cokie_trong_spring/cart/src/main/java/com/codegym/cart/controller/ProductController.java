@@ -8,10 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.Pattern;
 import java.util.Optional;
 
 @Controller
@@ -50,7 +50,12 @@ public class ProductController {
         cart.addProduct(productOptional.get());
         return "redirect:/shopping-cart";
     }
-
+    @PostMapping("/shopping-cart")
+    public  String payToCart(RedirectAttributes redirectAttributes, @SessionAttribute("cart") Cart cart){
+        cart.payProduct();
+        redirectAttributes.addFlashAttribute("mess","thanh toán thành công");
+        return "redirect:/shopping-cart";
+    }
     @GetMapping("/decrease/{id}")
     public String decreaseToCart(@PathVariable Long id, @SessionAttribute("cart") Cart cart) {
         Optional<Product> product = productService.findById(id);

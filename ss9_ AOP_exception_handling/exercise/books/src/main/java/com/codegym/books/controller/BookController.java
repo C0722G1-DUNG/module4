@@ -52,14 +52,16 @@ public class BookController {
 
     @PostMapping("/pay")
     public String pay(@ModelAttribute("book") Book book, RedirectAttributes redirectAttributes, int nameCode, Model model) {
-        if (iOderService.isCheck(nameCode)) {
-            iBookService.payBook(book.getId());
+        Oder oder = iOderService.findByNameCode(nameCode);
+        if (iOderService.isCheck(nameCode) && book.getId()==oder.getBook().getId()) {
+            iOderService.deleteOderByNameCode(oder.getId());
+            iBookService.payBook(oder.getBook().getId());
             redirectAttributes.addFlashAttribute("mess", "trả thành công");
             redirectAttributes.addFlashAttribute("mess1", "cảm ơn bạn và hẹn gặp lại");
             return "redirect:/book";
         }
         model.addAttribute("book", book);
         model.addAttribute("mess", "mã không đúng,xin nhập lại");
-        return "book/pay";
+        return "/pay";
     }
 }

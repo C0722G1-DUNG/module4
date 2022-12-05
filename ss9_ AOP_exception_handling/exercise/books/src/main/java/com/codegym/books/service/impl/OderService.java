@@ -58,4 +58,14 @@ iOderRepository.save(oder);
         }
         return false;
     }
+
+    @Override
+    public void deleteOderByNameCode(int id) {
+         iOderRepository.deleteOderById(id);
+    }
+
+    @Override
+    public Oder findByNameCode(double nameCode) {
+        return iOderRepository.findByNameCode(nameCode);
+    }
 }
