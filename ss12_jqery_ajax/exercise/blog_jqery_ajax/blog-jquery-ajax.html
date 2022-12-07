@@ -93,7 +93,7 @@
                  <td>${data.content[i].title}</td>
                  <td>${data.content[i].dayUpdate}</td>
                  <td>${data.content[i].content}</td>
-                <td>${data.content[i].nameCategory}</td>
+                <td>${data.content[i].category.nameCategory}</td>
                  </tr>
               `
                 }
@@ -116,7 +116,7 @@
       <td>${data.content[i].title}</td>
       <td>${data.content[i].dayUpdate}</td>
       <td>${data.content[i].content}</td>
-      <td>${data.content[i].nameCategory}</td>
+      <td>${data.content[i].category.nameCategory}</td>
     </tr>
                     `
                     }
@@ -137,12 +137,12 @@
                     for (let i = 0; i < data.content.length; i++) {
                         myTable += `
                         <tr>
-      <th scope="row">${i + 1 + pageNumber * 3}</th>
+      <th scope="row">${i + 1 + pageNumber * 5}</th>
       <td>${data.content[i].author}</td>
       <td>${data.content[i].title}</td>
       <td>${data.content[i].dayUpdate}</td>
       <td>${data.content[i].content}</td>
-      <td>${data.content[i].nameCategory}</td>
+      <td>${data.content[i].category.nameCategory}</td>
     </tr>
                     `
                     }
