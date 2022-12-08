@@ -3,83 +3,32 @@ package com.codegym.spring_security.controller;
 import com.codegym.spring_security.model.User;
 import com.codegym.spring_security.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.WebUtils;
-
-import java.security.Principal;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/user")
 public class UserController {
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
-    public String welcomePage(Model model) {
-        model.addAttribute("title", "Welcome");
-        model.addAttribute("message", "This is welcome page!");
-        return "welcomePage";
+    @Autowired
+    private IUserService iUserService;
+    @GetMapping("")
+    public String showList(Model model, Pageable pageable) {
+        model.addAttribute("userList",iUserService.findAll(pageable));
+        return "/list";
     }
-
-//    @RequestMapping(value = "/admin", method = RequestMethod.GET)
-//    public String adminPage(Model model, Principal principal) {
-//
-//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-//
-//        String userInfo = WebUtils.toString(loginedUser);
-//        model.addAttribute("userInfo", userInfo);
-//
-//        return "adminPage";
-//    }
-//
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String loginPage(Model model) {
-//
-//        return "loginPage";
-//    }
-//
-//    @RequestMapping(value = "/logoutSuccessful", method = RequestMethod.GET)
-//    public String logoutSuccessfulPage(Model model) {
-//        model.addAttribute("title", "Logout");
-//        return "logoutSuccessfulPage";
-//    }
-//
-//    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-//    public String userInfo(Model model, Principal principal) {
-//
-//        // Sau khi user login thanh cong se co principal
-//        String userName = principal.getName();
-//
-//        System.out.println("User Name: " + userName);
-//
-//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-//
-//        String userInfo = WebUtils.toString(loginedUser);
-//        model.addAttribute("userInfo", userInfo);
-//
-//        return "userInfoPage";
-//    }
-//
-//    @RequestMapping(value = "/403", method = RequestMethod.GET)
-//    public String accessDenied(Model model, Principal principal) {
-//
-//        if (principal != null) {
-//            User loginedUser = (User) ((Authentication) principal).getPrincipal();
-//
-//            String userInfo = WebUtils.toString(loginedUser);
-//
-//            model.addAttribute("userInfo", userInfo);
-//
-//            String message = "Hi " + principal.getName() //
-//                    + "<br> You do not have permission to access this page!";
-//            model.addAttribute("message", message);
-//
-//        }
-//
-//        return "403Page";
-//    }
-
-
+    @GetMapping("/update")
+    public String showUpdate(Model model,@RequestParam("id")Integer id){
+        model.addAttribute("user",iUserService.findById(id).get());
+        return "/update";
+    }
+    @PostMapping("/update")
+    public String update(RedirectAttributes redirectAttributes,@ModelAttribute("user")User user){
+       iUserService.save(user);
+       redirectAttributes.addFlashAttribute("mess","cập nhật thành công");
+        return "redirect:/user";
+    }
 }

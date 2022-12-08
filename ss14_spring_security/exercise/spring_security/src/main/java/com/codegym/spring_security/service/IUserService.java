@@ -1,4 +1,6 @@
 package com.codegym.spring_security.service;
 
-public interface IUserService {
+import com.codegym.spring_security.model.User;
+
+public interface IUserService extends IGeneralService<User> {
 }
