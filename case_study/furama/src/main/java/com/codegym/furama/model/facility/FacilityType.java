@@ -1,33 +1,24 @@
-package com.codegym.furama.model.employee;
+package com.codegym.furama.model.facility;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "division")
-public class Division {
+public class FacilityType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    @OneToMany(mappedBy = "division")
-    private Set<Employee> employees;
+    @OneToMany(mappedBy = "facilityType")
+    private Set<Facility> facilities;
 
-    public Division() {
+    public FacilityType() {
     }
 
-    public Division(int id, String name, Set<Employee> employees) {
+    public FacilityType(int id, String name, Set<Facility> facilities) {
         this.id = id;
         this.name = name;
-        this.employees = employees;
-    }
-
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(Set<Employee> employees) {
-        this.employees = employees;
+        this.facilities = facilities;
     }
 
     public int getId() {
@@ -44,5 +35,13 @@ public class Division {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Set<Facility> getFacilities() {
+        return facilities;
+    }
+
+    public void setFacilities(Set<Facility> facilities) {
+        this.facilities = facilities;
     }
 }

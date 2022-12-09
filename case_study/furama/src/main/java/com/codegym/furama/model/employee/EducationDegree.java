@@ -1,21 +1,26 @@
 package com.codegym.furama.model.employee;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "education_degree")
-public class Education_degree {
+public class EducationDegree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int name;
 
-    public Education_degree() {
+    @OneToMany(mappedBy = "educationDegree")
+    private Set<Employee> employees;
+
+    public EducationDegree() {
     }
 
-    public Education_degree(int id, int name) {
+    public EducationDegree(int id, int name, Set<Employee> employees) {
         this.id = id;
         this.name = name;
+        this.employees = employees;
     }
 
     public int getId() {
@@ -32,5 +37,13 @@ public class Education_degree {
 
     public void setName(int name) {
         this.name = name;
+    }
+
+    public Set<Employee> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(Set<Employee> employees) {
+        this.employees = employees;
     }
 }

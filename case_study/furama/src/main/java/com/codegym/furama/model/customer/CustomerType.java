@@ -4,10 +4,12 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "customer_type")
 public class CustomerType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  int id;
+    @Column(name = "name")
     private String nameCustomerType;
     @OneToMany(mappedBy = "customerType")
     private Set<Customer> customers;
