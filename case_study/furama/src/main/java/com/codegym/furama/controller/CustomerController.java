@@ -2,7 +2,6 @@ package com.codegym.furama.controller;
 
 import com.codegym.furama.dto.CustomerDto;
 import com.codegym.furama.model.customer.Customer;
-import com.codegym.furama.model.customer.CustomerType;
 import com.codegym.furama.service.ICustomerService;
 import com.codegym.furama.service.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -30,7 +29,7 @@ public class CustomerController {
     public String showList(@RequestParam( value = "name",defaultValue = "")String name
             ,@RequestParam( value = "email",defaultValue = "")String email
             ,@RequestParam( value = "nameType",defaultValue = "")String nameType
-            , Model model,@PageableDefault(value = 5) Pageable pageable) {
+            , Model model,@PageableDefault(page = 0,value = 5) Pageable pageable) {
         model.addAttribute("customerList", iCustomerService.searchAndShowList(name,email,nameType,pageable));
         return "/customer/list";
     }

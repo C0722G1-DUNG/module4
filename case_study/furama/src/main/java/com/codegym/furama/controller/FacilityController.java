@@ -17,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/facility")
 public class FacilityController {
@@ -62,6 +64,33 @@ public class FacilityController {
     public String delete(@RequestParam("deleteById") int id, RedirectAttributes redirectAttributes) {
         iFacilityService.remove(id);
         redirectAttributes.addFlashAttribute("messages", "xóa thành công");
+        return "redirect:/facility";
+    }
+
+    @GetMapping("/update")
+    public String showUpdate(@RequestParam("id") int id , Model model){
+        Optional<Facility> facility = iFacilityService.findById(id);
+        FacilityDto facilityDto = new FacilityDto();
+        BeanUtils.copyProperties(facility.get(),facilityDto);
+        model.addAttribute("facilityTypeDtoList", iFacilityTypeService.findAll());
+        model.addAttribute("rentTypeList", iRentTypeService.findAll());
+        model.addAttribute("facilityDto",facilityDto);
+
+        return "/facility/update";
+    }
+    @PostMapping("/update")
+    public String update(@Validated @ModelAttribute("facilityDto") FacilityDto facilityDto ,BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+        new FacilityDto().validate(facilityDto,bindingResult);
+        if (bindingResult.hasFieldErrors()){
+            model.addAttribute("facilityTypeDtoList", iFacilityTypeService.findAll());
+            model.addAttribute("rentTypeList", iRentTypeService.findAll());
+
+            return "/facility/update";
+        }
+        Facility facility = new Facility();
+        BeanUtils.copyProperties(facilityDto,facility);
+        iFacilityService.save(facility);
+        redirectAttributes.addFlashAttribute("messages","update thành công");
         return "redirect:/facility";
     }
 }

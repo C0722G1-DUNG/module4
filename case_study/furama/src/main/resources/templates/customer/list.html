@@ -68,6 +68,16 @@
     </th:block>
     </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li  class="page-item"><a th:href="@{'/customer'(page=${customerList.number-1})}" th:if="${customerList.hasPrevious()}" class="page-link">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li  class="page-item"><a th:href="@{'/customer'(page=${customerList.number + 1})}" th:if="${customerList.hasNext()}" class="page-link" >Next</a></li>
+    </ul>
+</nav>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
