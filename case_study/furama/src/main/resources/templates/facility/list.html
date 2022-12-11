@@ -10,15 +10,13 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
-<a class="btn btn-danger" th:href="@{/customer/create}">ADD Customer</a>
+<a class="btn btn-danger" th:href="@{/facility/create}">ADD New Facility</a>
 <span style="color: red" th:text="${messages}"></span>
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
         <form class="d-flex">
-            <input name="name" class="form-control me-2" type="search" placeholder="SearchForName" aria-label="Search">
-            <input name="email" class="form-control me-2" type="search" placeholder="SearchForEmail"
-                   aria-label="Search">
-            <input name="nameType" class="form-control me-2" type="search" placeholder="SearchForCustomerType"
+            <input name="nameType" class="form-control me-2" type="search" placeholder="SearchForName" aria-label="Search">
+            <input name="name" class="form-control me-2" type="search" placeholder="SearchForCustomerType"
                    aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -28,38 +26,42 @@
     <thead>
     <tr>
         <th>STT</th>
-        <th>nameCustomer</th>
-        <th>birthday</th>
-        <th>gender</th>
-        <th>id_card</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>address</th>
-        <th>nameCustomerType</th>
+        <th>nameFacility</th>
+        <th>area</th>
+        <th>cost</th>
+        <th>maxPeople</th>
+        <th>standardRoom</th>
+        <th>descriptionOtherCovenience</th>
+        <th>pollArea</th>
+        <th>numberOfFloors</th>
+        <th>facilityFree</th>
+        <th>rentType</th>
+        <th>facilityType</th>
         <th>update</th>
         <th>delete</th>
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="customer,varStatus : ${customerList}">
+    <th:block th:each="facility,varStatus : ${facilityList}">
         <tr>
             <td th:text="${varStatus.count}"></td>
-            <td th:text="${customer.nameCustomer}"></td>
-            <td th:text="${customer.birthday}"></td>
+            <td th:text="${facility.name}"></td>
+            <td th:text="${facility.area}"></td>
 
-            <td th:if="${customer.gender}" th:text="nam"></td>
-            <td th:if="${!customer.gender}" th:text="nữ"></td>
-            <td th:text="${customer.id_card}"></td>
-            <td th:text="${customer.phone}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.address}"></td>
-            <td th:text="${customer.customerType.nameCustomerType}"></td>
+            <td th:text="${facility.cost}"></td>
+            <td th:text="${facility.maxPeople}"></td>
+            <td th:text="${facility.standardRoom}"></td>
+            <td th:text="${facility.descriptionOtherCovenience}"></td>
+            <td th:text="${facility.pollArea}"></td>
+            <td th:text="${facility.numberOfFloors}"></td>
+            <td th:text="${facility.facilityFree}"></td>
+            <td th:text="${facility.rentType.name}"></td>
+            <td th:text="${facility.facilityType.name}"></td>
             <td>
-                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>
+<!--                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>-->
             </td>
             <td>
-                <!-- Button trigger modal -->
-                <button th:attr="onclick=|deleteById('${customer.id}','${customer.nameCustomer}')|" type="button"
+                <button th:attr="onclick=|deleteById('${facility.id}','${facility.name}')|" type="button"
                         class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Delete
                 </button>
@@ -78,13 +80,13 @@
             </div>
             <div class="modal-body">
                 <span>
-                    bạn có muốn xóa khách hàng  này không:
+                    bạn có muốn xóa dịch vụ  này không:
                 </span>
                 <span style="color: #ff0000" id="deleteByName"></span>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <form th:action="@{/customer/delete}" method="post">
+                <form th:action="@{/facility/delete}" method="post">
                     <input type="text" hidden id="deleteById" name="deleteById">
                     <button type="submit" class="btn btn-primary">Delete</button>
                 </form>

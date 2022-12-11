@@ -111,7 +111,7 @@ public class CustomerDto implements Validator {
     public void validate(Object target, Errors errors) {
         CustomerDto customerDto = (CustomerDto) target;
         if (!customerDto.getNameCustomer().matches("^\\p{Lu}\\p{Ll}+(\\s\\p{Lu}\\p{Ll}+)*$")){
-            errors.rejectValue("nameCustomer","nameCustomer","Tên khách hàng không hơp lệ");
+            errors.rejectValue("nameCustomer","nameCustomer","1.\tTên khách hàng không được chứa số. Và các kí tự đầu tiên của mỗi từ phải viết hoa");
         }
     }
 }

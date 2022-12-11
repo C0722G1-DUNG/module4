@@ -1,4 +1,4 @@
-package com.codegym.furama.service.impl;
+package com.codegym.furama.service.impl.customer;
 
 import com.codegym.furama.model.customer.Customer;
 import com.codegym.furama.repository.ICustomerRepository;

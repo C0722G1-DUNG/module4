@@ -8,34 +8,40 @@
 </head>
 <body>
 <a th:href="@{/customer}">Quay lại trang list</a>
-<form action="/customer/update" method="post" th:object="${customer}">
+<form action="/customer/update" method="post" th:object="${customerDto}">
     <input type="hidden" th:field="*{id}">
 
     <label th:for="nameCustomer">nameCustomer</label>
-    <input th:field="*{nameCustomer}">
+    <input th:field="*{nameCustomer}"><br>
+    <p  th:errors="*{nameCustomer}" class="text-danger"></p>
 
     <label th:for="birthday">birthday</label>
-    <input type="date" th:field="*{birthday}">
+    <input type="date" th:field="*{birthday}"><br>
 
+<!--    <label th:for="gender">gender</label>-->
+<!--    <input th:field="*{gender}"><br>-->
     <label th:for="gender">gender</label>
-    <input th:field="*{gender}">
+    <select th:field="*{gender}">
+        <option th:value="${true}" ${gender==true?"selected":""} th:text="nam" ></option>
+        <option th:value="${false}"  ${gender==false?"selected":""} th:text="nữ" ></option>
+    </select><br>
 
     <label th:for="id_card">id_card</label>
-    <input th:field="*{id_card}">
+    <input th:field="*{id_card}"><br>
 
     <label th:for="phone">phone</label>
-    <input th:field="*{phone}">
+    <input th:field="*{phone}"><br>
 
     <label th:for="email">email</label>
-    <input th:field="*{email}">
+    <input th:field="*{email}"><br>
 
     <label th:for="address">address</label>
-    <input th:field="*{address}">
+    <input th:field="*{address}"><br>
 
 
-    <!--    <select th:field="*{category}">-->
-<!--        <option th:each="iteam : ${categoryList}" ${iteam.nameCategory==category.id?"selected":""}  th:text="${iteam.nameCategory}" th:value="${iteam.id}"></option>-->
-<!--    </select>-->
+    <select th:field="*{customerType}">
+        <option th:each="iteam : ${customerTypeList} "  ${iteam.id==customer.id?"selected":""} th:text="${iteam.nameCustomerType}" th:value="${iteam.id}" ></option>
+    </select>
     <input type="submit" th:value="luu">
 </form>
 </body>

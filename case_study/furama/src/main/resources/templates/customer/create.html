@@ -15,27 +15,42 @@
         <!--        <input type="text" th:field="*{id}">-->
 
         <label th:for="nameCustomer">nameCustomer</label>
-        <input th:field="*{nameCustomer}">
+        <input th:field="*{nameCustomer}"><br>
+        <p  th:errors="*{nameCustomer}" class="text-danger"></p>
 
         <label th:for="birthday">birthday</label>
-        <input th:field="*{birthday}">
+        <input type="date" th:field="*{birthday}"><br>
+        <p  th:errors="*{birthday}" class="text-danger"></p>
 
+<!--        <label th:for="gender">gender</label>-->
+<!--        <input th:field="*{gender}"><br>-->
         <label th:for="gender">gender</label>
-        <input th:field="*{gender}">
+        <select th:field="*{gender}">
+            <option th:value="${true}" th:text="nam"  ></option>
+            <option th:value="${false}" th:text="nữ" ></option>
+        </select><br>
+        <p  th:errors="*{gender}" class="text-danger"></p>
 
         <label th:for="id_card">id_card</label>
-        <input th:field="*{id_card}">
+        <input th:field="*{id_card}"><br>
+        <p  th:errors="*{id_card}" class="text-danger"></p>
+
+        <label th:for="phone">phone</label>
+        <input th:field="*{phone}"><br>
+        <p  th:errors="*{phone}" class="text-danger"></p>
 
         <label th:for="email">email</label>
-        <input th:field="*{email}">
+        <input th:field="*{email}"><br>
+        <p  th:errors="*{email}" class="text-danger"></p>
 
         <label th:for="address">address</label>
-        <input th:field="*{address}">
+        <input th:field="*{address}"><br>
+        <p  th:errors="*{address}" class="text-danger"></p>
 
 
-        <!--        <select th:field="*{category}">-->
-<!--            <option th:each="iteam : ${categoryList} " th:text="${iteam.nameCategory}" th:value="${iteam.id}" ></option>-->
-<!--        </select>-->
+                <select th:field="*{customerType}">
+            <option th:each="iteam : ${customerTypeList} " th:text="${iteam.nameCustomerType}" th:value="${iteam.id}" ></option>
+        </select>
         <input type="submit" th:value="luu">
     </form>
 </div>
