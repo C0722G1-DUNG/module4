@@ -10,6 +10,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+<div th:replace="/layout::header"></div>
 <a class="btn btn-danger" th:href="@{/facility/create}">ADD New Facility</a>
 <span style="color: red" th:text="${messages}"></span>
 <nav class="navbar navbar-light bg-light">
@@ -44,7 +45,7 @@
     <tbody>
     <th:block th:each="facility,varStatus : ${facilityList}">
         <tr>
-            <td th:text="${varStatus.count}"></td>
+            <td th:text="${varStatus.count}+${facilityList.number}*5"></td>
             <td th:text="${facility.name}"></td>
             <td th:text="${facility.area}"></td>
 
@@ -71,15 +72,15 @@
     </tbody>
 </table>
 
-<!--<nav aria-label="Page navigation example">-->
-<!--    <ul class="pagination">-->
-<!--        <li  class="page-item"><a th:href="@{'/facility'(page=${facilityList.number-1})}" th:if="${facilityList.hasPrevious()}" class="page-link">Previous</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--        <li  class="page-item"><a th:href="@{'/facility'(page=${facilityList.number + 1})}" th:if="${facilityList.hasNext()}" class="page-link" >Next</a></li>-->
-<!--    </ul>-->
-<!--</nav>-->
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li  class="page-item"><a th:href="@{'/facility'(page=${facilityList.number-1})}" th:if="${facilityList.hasPrevious()}" class="page-link">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li  class="page-item"><a th:href="@{'/facility'(page=${facilityList.number + 1})}" th:if="${facilityList.hasNext()}" class="page-link" >Next</a></li>
+    </ul>
+</nav>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

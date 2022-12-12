@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>WWW.FURAMA</title>
@@ -10,50 +10,7 @@
 <body>
 <!--        phần thông tin logo furama-->
 <div  class="container-fluid vh-100">
-    <div class="row " style="justify-content: space-evenly ;height:15%">
-        <div style="height: 100%"  class="col-sm-12 col-md-3  ">
-            <img height="100%" src="https://furamavietnam.com/wp-content/uploads/2018/08/logo@2x.png" alt="">
-        </div>
-        <div style="height: 100%" class="card-group col-sm-12 col-md-3">
-
-            <div style="height: 20%"class="row">
-                <div class="col-sm-12 col-md-12">
-                    <img style="height: 10%" src="https://www.vatc.org/wp-content/uploads/2018/07/TripAdvisor-logo.png" alt="...">
-                </div>
-            </div>
-            <div style="height: 20%"class="row">
-                <div class="col-sm-12 col-md-12">
-                    <a href="#">2,766 Review</a>
-                </div>
-            </div>
-
-        </div>
-        <div style="height: 100%" class="col-sm-12 col-md-3 d-flex" >
-            <img src="icon/location_on_FILL0_wght400_GRAD0_opsz48.png" height="48" width="48"/>
-            <p>
-                103 – 105 Đường Võ Nguyên Giáp, Phường Khuê Mỹ, Quận Ngũ hành Sơn, Tp. Đà Nẵng, Việt Nam
-
-                <a href=""> 7.0 km</a> từ Sân bay Quốc tế Đà Nẵng</p>
-        </div>
-        <div style="height: 100%" class="col-sm-12 col-md-3 ">
-            <i style="float: left" class="fa fa-facebook-official" aria-hidden="true"><a href="#">
-                duydungne.furamaresorthcom</a></i>
-            <i class="fa fa-phone" aria-hidden="true">
-                84-236-3847 333/888</i>
-
-        </div>
-    </div>
-    <!--phần navbar-->
-    <nav style="height: 10%" class="navbar navbar-expand-lg navbar-light bg-success">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse justify-content-center " id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" href="/customer">Customer</a>
-
-                </div>
-            </div>
-        </div>
-    </nav>
+    <div th:replace="/layout::header"></div>
     <!--Phần kết thúc navbar-->
     <!--Hình ảnh di chuyển-->
     <div style="height: 70%" id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">

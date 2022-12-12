@@ -31,8 +31,8 @@ public class FacilityController {
     @GetMapping("")
     public String showList(@RequestParam(value = "nameType",defaultValue = "")String nameType,@RequestParam(value = "name",defaultValue = "")String name
             , Model model, @PageableDefault(value = 5) Pageable pageable){
-//        model.addAttribute("facilityList",iFacilityService.searchAndShow(nameType,name,pageable));
-        model.addAttribute("facilityList",iFacilityService.findAll());
+        model.addAttribute("facilityList",iFacilityService.searchAndShow(nameType,name,pageable));
+//        model.addAttribute("facilityList",iFacilityService.findAll());
         return "facility/list";
     }
     @GetMapping("/create")

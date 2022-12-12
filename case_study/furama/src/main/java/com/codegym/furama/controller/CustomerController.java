@@ -2,6 +2,7 @@ package com.codegym.furama.controller;
 
 import com.codegym.furama.dto.CustomerDto;
 import com.codegym.furama.model.customer.Customer;
+import com.codegym.furama.model.customer.CustomerType;
 import com.codegym.furama.service.ICustomerService;
 import com.codegym.furama.service.ICustomerTypeService;
 import org.springframework.beans.BeanUtils;
@@ -15,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -25,17 +27,23 @@ public class CustomerController {
 
     @Autowired
     private ICustomerTypeService iCustomerTypeService;
+    @ModelAttribute("customerTypeList")
+    public List<CustomerType> getList(){
+        return (List<CustomerType>) iCustomerTypeService.findAll();
+    }
     @GetMapping("")
     public String showList(@RequestParam( value = "name",defaultValue = "")String name
             ,@RequestParam( value = "email",defaultValue = "")String email
             ,@RequestParam( value = "nameType",defaultValue = "")String nameType
             , Model model,@PageableDefault(page = 0,value = 5) Pageable pageable) {
+        model.addAttribute("name",name);
+        model.addAttribute("email",email);
+        model.addAttribute("nameType",nameType);
         model.addAttribute("customerList", iCustomerService.searchAndShowList(name,email,nameType,pageable));
         return "/customer/list";
     }
     @GetMapping("/create")
     public String showFormCreate(Model model) {
-       model.addAttribute("customerTypeList", iCustomerTypeService.findAll());
         model.addAttribute("customerDto", new CustomerDto());
         return "customer/create";
     }
@@ -45,7 +53,6 @@ public class CustomerController {
                          BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            model.addAttribute("customerTypeList", iCustomerTypeService.findAll());
             return ("customer/create");
         }
         Customer customer= new Customer();
@@ -66,7 +73,6 @@ public class CustomerController {
         Optional<Customer> customer = iCustomerService.findById(id);
         CustomerDto customerDto = new CustomerDto();
         BeanUtils.copyProperties(customer.get(),customerDto);
-        model.addAttribute("customerTypeList", iCustomerTypeService.findAll());
         model.addAttribute("customerDto",customerDto);
 
         return "/customer/update";
@@ -75,7 +81,6 @@ public class CustomerController {
     public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto ,BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         new CustomerDto().validate(customerDto,bindingResult);
         if (bindingResult.hasFieldErrors()){
-            model.addAttribute("customerTypeList", iCustomerTypeService.findAll());
 
             return "/customer/update";
         }

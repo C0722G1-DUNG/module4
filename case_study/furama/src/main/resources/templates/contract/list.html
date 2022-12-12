@@ -11,7 +11,6 @@
 </head>
 <body>
 <div th:replace="/layout::header"></div>
-
 <a class="btn btn-danger" th:href="@{/customer/create}">ADD Customer</a>
 <span style="color: red" th:text="${messages}"></span>
 <nav class="navbar navbar-light bg-light">
@@ -30,56 +29,39 @@
     <thead>
     <tr>
         <th>STT</th>
-        <th>nameCustomer</th>
-        <th>birthday</th>
-        <th>gender</th>
-        <th>id_card</th>
-        <th>phone</th>
-        <th>email</th>
-        <th>address</th>
-        <th>nameCustomerType</th>
-        <th>update</th>
-        <th>delete</th>
+        <th>Dịch vụ</th>
+        <th>Khách hàng</th>
+        <th>Ngày bắt đầu</th>
+        <th>Ngày kết thúc</th>
+        <th>Tiền đặt cọc</th>
+        <th>tổng tiền</th>
+        <th>các dịch vụ đi kèm</th>
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="customer,varStatus : ${customerList}">
+    <th:block th:each="contract,varStatus : ${contractList}">
         <tr>
-            <td th:text="${varStatus.count}+${customerList.number}*5"></td>
-            <td th:text="${customer.nameCustomer}"></td>
-            <td th:text="${customer.birthday}"></td>
-
-            <td th:if="${customer.gender}" th:text="nam"></td>
-            <td th:if="${!customer.gender}" th:text="nữ"></td>
-            <td th:text="${customer.id_card}"></td>
-            <td th:text="${customer.phone}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.address}"></td>
-            <td th:text="${customer.customerType.nameCustomerType}"></td>
+            <td th:text="${varStatus.count}"></td>
+            <td th:text="${contract.facility.name}"></td>
+            <td th:text="${contract.customer.nameCustomer}"></td>
+            <td th:text="${contract.startDate}"></td>
+            <td th:text="${contract.endDate}"></td>
+            <td th:text="${contract.deposit}"></td>
+            <td th:text="total"></td>
             <td>
-                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>
+<!--                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>-->
             </td>
             <td>
                 <!-- Button trigger modal -->
-                <button th:attr="onclick=|deleteById('${customer.id}','${customer.nameCustomer}')|" type="button"
-                        class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Delete
-                </button>
+<!--                <button th:attr="onclick=|deleteById('${customer.id}','${customer.nameCustomer}')|" type="button"-->
+<!--                        class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">-->
+<!--                    Delete-->
+<!--                </button>-->
             </td>
         </tr>
     </th:block>
     </tbody>
 </table>
-
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number-1})}" th:if="${customerList.hasPrevious()}" class="page-link">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number + 1})}" th:if="${customerList.hasNext()}" class="page-link" >Next</a></li>
-    </ul>
-</nav>
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">

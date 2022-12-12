@@ -7,9 +7,8 @@ import java.util.Set;
 @Table(name = "user")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "username")
-    private int userName;
+    private String userName;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
@@ -19,17 +18,17 @@ public class User {
     public User() {
     }
 
-    public User(int userName, String password, Set<Role> roles) {
+    public User(String userName, String password, Set<Role> roles) {
         this.userName = userName;
         this.password = password;
         this.roles = roles;
     }
 
-    public int getUserName() {
+    public String getUserName() {
         return userName;
     }
 
-    public void setUserName(int userName) {
+    public void setUserName(String userName) {
         this.userName = userName;
     }
 

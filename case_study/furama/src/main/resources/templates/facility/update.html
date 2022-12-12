@@ -40,7 +40,7 @@
         <label th:for="facilityType">loại dịch vụ</label>
         <select th:field="*{facilityType}" onchange="changForrm(this.value)">
             <option th:value="${''}" class="text-danger">...Chọn loại dịch vụ...</option>
-            <option ${iteam.id==facilityType.id?"selected":""}  th:each="iteam : ${facilityTypeDtoList} " th:text="${iteam.name}" th:value="${iteam.id}" ></option>
+            <option  ${iteam.id==facilityType.id?"selected":""}  th:each="iteam : ${facilityTypeDtoList} " th:text="${iteam.name}" th:value="${iteam.id}" ></option>
         </select><br>
 
         <div id="standardRoom" style="display: none" >
