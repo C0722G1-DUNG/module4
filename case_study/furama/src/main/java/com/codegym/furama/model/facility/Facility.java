@@ -1,5 +1,8 @@
 package com.codegym.furama.model.facility;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,9 +19,11 @@ public class Facility {
     private double pollArea;
     private int numberOfFloors;
     private String facilityFree;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "rent_type_id",referencedColumnName = "id")
     private RentType rentType;
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "facility_type_id",referencedColumnName = "id")
     private FacilityType facilityType;

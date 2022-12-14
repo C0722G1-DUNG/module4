@@ -1,5 +1,7 @@
 package com.codegym.furama.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -10,6 +12,7 @@ public class User {
     @Column(name = "username")
     private String userName;
     private String password;
+    @JsonManagedReference
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "username"))

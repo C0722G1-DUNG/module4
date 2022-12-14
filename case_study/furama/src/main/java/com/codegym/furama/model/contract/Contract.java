@@ -3,6 +3,8 @@ package com.codegym.furama.model.contract;
 import com.codegym.furama.model.customer.Customer;
 import com.codegym.furama.model.employee.Employee;
 import com.codegym.furama.model.facility.Facility;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,16 +17,19 @@ public class Contract {
     private String startDate;
     private String endDate;
     private double deposit;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "employee_id", referencedColumnName = "id")
     private Employee employee;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "facility_id", referencedColumnName = "id")
     private Facility facility;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "contract")
     private Set<ContractDetail> contractDetails;
 

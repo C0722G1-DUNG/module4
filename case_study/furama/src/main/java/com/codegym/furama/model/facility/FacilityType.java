@@ -1,5 +1,7 @@
 package com.codegym.furama.model.facility;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -9,6 +11,7 @@ public class FacilityType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+    @JsonBackReference
     @OneToMany(mappedBy = "facilityType")
     private Set<Facility> facilities;
 

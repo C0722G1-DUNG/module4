@@ -1,5 +1,7 @@
 package com.codegym.furama.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 @Entity
@@ -8,9 +10,11 @@ public class ContractDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int quantity;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "contract_id",referencedColumnName = "id")
     private Contract contract;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "attach_facility_id",referencedColumnName = "id")
     private AttachFacility attachFacility;

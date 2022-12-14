@@ -1,5 +1,7 @@
 package com.codegym.furama.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -12,6 +14,7 @@ public class Role {
     private int id;
     @Column(name = "role_name")
     private String name;
+    @JsonManagedReference
     @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
     private Set<User> users;
 

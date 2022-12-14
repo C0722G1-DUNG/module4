@@ -1,5 +1,7 @@
 package com.codegym.furama.model.employee;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -20,18 +22,19 @@ public class Employee {
     private String phone;
     private String email;
     private String address;
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "position_id" ,referencedColumnName = "id")
     private Position position;
-
+@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "education_degeee_id",referencedColumnName = "id")
     private EducationDegree educationDegree;
-
+@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "division_id",referencedColumnName = "id")
     private Division division;
-
+@JsonManagedReference
     @OneToOne
     @JoinColumn(name = "username", referencedColumnName = "userName")
     private User user;

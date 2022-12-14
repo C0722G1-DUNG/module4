@@ -1,6 +1,7 @@
 package com.codegym.furama.service.impl.contract;
 
 import com.codegym.furama.model.contract.Contract;
+import com.codegym.furama.model.contract.IContract;
 import com.codegym.furama.repository.IContractRepository;
 import com.codegym.furama.service.IContractService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class ContractService implements IContractService {
     }
 
     @Override
-    public List<Contract> listContract() {
+    public List<IContract> listContract() {
         return iContractRepository.listContract();
     }
 }

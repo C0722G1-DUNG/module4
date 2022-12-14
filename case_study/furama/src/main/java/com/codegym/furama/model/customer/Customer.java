@@ -1,6 +1,8 @@
 package com.codegym.furama.model.customer;
 
 import com.codegym.furama.model.contract.Contract;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -21,9 +23,11 @@ public class Customer {
     private String phone;
     private String email;
     private String address;
+    @JsonManagedReference
     @ManyToOne()
     @JoinColumn(name =  "customer_type_id",referencedColumnName = "id")
     private CustomerType customerType;
+    @JsonBackReference
     @OneToMany(mappedBy = "customer")
     private Set<Contract> contracts;
 
