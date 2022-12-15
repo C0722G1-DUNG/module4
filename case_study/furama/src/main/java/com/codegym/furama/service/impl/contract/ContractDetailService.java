@@ -6,6 +6,7 @@ import com.codegym.furama.service.IContractDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class ContractDetailService implements IContractDetailService {
@@ -18,7 +19,7 @@ public class ContractDetailService implements IContractDetailService {
 
     @Override
     public Optional<ContractDetail> findById(Integer id) {
-        return Optional.empty();
+        return iContractDetailRepository.findById(id);
     }
 
     @Override
@@ -29,5 +30,15 @@ iContractDetailRepository.save(contractDetail);
     @Override
     public void remove(Integer id) {
 
+    }
+
+    @Override
+    public List<ContractDetail> findAllById(int id) {
+        return iContractDetailRepository.findAllById(id);
+    }
+
+    @Override
+    public List<ContractDetail> findByAllByIdEqualContractId(int id) {
+        return iContractDetailRepository.findByAllByIdEqualContractId(id);
     }
 }

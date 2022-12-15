@@ -27,13 +27,13 @@ public class ContractDetailController {
     private IContractService iContractService;
     @Autowired
     private IAttachFacilityService iAttachFacilityService;
-    @GetMapping("/id")
-    public ResponseEntity<List<ContractDetail> > showList(){
-  List<ContractDetail> contractDetail = (List<ContractDetail>) iContractDetailService.findAll();
+    @GetMapping("/list/{id}")
+    public ResponseEntity<List<ContractDetail> > showList(@PathVariable("id") int id){
+ List<ContractDetail> contractDetail =  iContractDetailService.findByAllByIdEqualContractId(id);
   if (contractDetail.isEmpty()){
       return new ResponseEntity<>(HttpStatus.NO_CONTENT);
   }
-  return new ResponseEntity<>(contractDetail,HttpStatus.OK);
+  return new ResponseEntity(contractDetail,HttpStatus.OK);
     }
     @PostMapping("")
     public ResponseEntity create(@RequestBody ContractDetail contractDetail) {

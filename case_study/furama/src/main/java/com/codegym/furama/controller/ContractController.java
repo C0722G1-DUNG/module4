@@ -32,6 +32,8 @@ public class ContractController {
     private IContractDetailService iContractDetailService;
     @Autowired
     private ICustomerService iCustomerService;
+    @Autowired
+    private IFacilityService iFacilityService;
     @ModelAttribute("customerList")
     public List<Customer> getListCustomer(){
         return (List<Customer>) iCustomerService.findAll();
@@ -39,7 +41,7 @@ public class ContractController {
     @Autowired
     private IFacilityTypeService iFacilityTypeService;
     @ModelAttribute("facilityTypeList")
-    public List<FacilityType> getListFacility(){
+    public List<FacilityType> getListFacilityType(){
         return (List<FacilityType>) iFacilityTypeService.findAll();
     }
 
@@ -51,26 +53,37 @@ public class ContractController {
     public  List<ContractDetail> getListContractDetail(){
         return (List<ContractDetail>) iContractDetailService.findAll();
     }
+    @ModelAttribute("facilityList")
+    public List<Facility> getListFacility(){
+        return (List<Facility>) iFacilityService.findAll();
+    }
 
 
     @GetMapping("")
     public String showList(Model model){
         List<IContract> iContractList = iContractService.listContract();
         model.addAttribute("contractList",iContractList);
-
+        model.addAttribute("contractDetail",new ContractDetail());
+        model.addAttribute("contract",new Contract());
         return "/contract/list";
     }
-    @GetMapping("/create")
-    public String showFormCreate(Model model) {
-        model.addAttribute("contract", new Contract());
-        return "contract/create";
-    }
+//    @GetMapping("/create")
+//    public String showFormCreate(Model model) {
+//        model.addAttribute("contract", new Contract());
+//        return "contract/create";
+//    }
     @PostMapping("/create")
     public String create(@ModelAttribute("contract") Contract contract,
                        RedirectAttributes redirectAttributes) {
         iContractService.save(contract);
         redirectAttributes.addFlashAttribute("messages", "thêm mới thành công");
-        return ("redirect:/customer/create");
+        return ("redirect:/contract");
+    }
+    @PostMapping("/create/contractDetail")
+    public String createContractDetail(@ModelAttribute("contractDetail")ContractDetail contractDetail,RedirectAttributes redirectAttributes){
+iContractDetailService.save(contractDetail);
+        redirectAttributes.addFlashAttribute("messages","Thêm mới thành công");
+        return "redirect:/contract";
     }
 
 
