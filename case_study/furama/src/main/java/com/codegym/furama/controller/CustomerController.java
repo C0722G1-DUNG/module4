@@ -32,7 +32,7 @@ public class CustomerController {
         return (List<CustomerType>) iCustomerTypeService.findAll();
     }
     @GetMapping("")
-    public String showList(@RequestParam( value = "name",defaultValue = "")String name
+    public String showList(CustomerDto customerDto,@RequestParam( value = "name",defaultValue = "")String name
             ,@RequestParam( value = "email",defaultValue = "")String email
             ,@RequestParam( value = "nameType",defaultValue = "")String nameType
             , Model model,@PageableDefault(page = 0,value = 5) Pageable pageable) {
@@ -40,6 +40,11 @@ public class CustomerController {
         model.addAttribute("email",email);
         model.addAttribute("nameType",nameType);
         model.addAttribute("customerList", iCustomerService.searchAndShowList(name,email,nameType,pageable));
+//        model.addAttribute("customer",iCustomerService.findById());
+
+//        CustomerDto customerDto = new CustomerDto();
+
+        model.addAttribute("customerDto",customerDto);
         return "/customer/list";
     }
     @GetMapping("/create")
@@ -53,13 +58,14 @@ public class CustomerController {
                          BindingResult bindingResult, RedirectAttributes redirectAttributes,Model model) {
         new CustomerDto().validate(customerDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
-            return ("customer/create");
+            model.addAttribute("modalCreate",true);
+            return ("redirect:/customer");
         }
         Customer customer= new Customer();
         BeanUtils.copyProperties(customerDto, customer);
         iCustomerService.save(customer);
         redirectAttributes.addFlashAttribute("messages", "thêm mới thành công");
-        return ("redirect:/customer/create");
+        return ("redirect:/customer");
     }
 
     @PostMapping("/delete")
@@ -68,21 +74,22 @@ public class CustomerController {
         redirectAttributes.addFlashAttribute("messages", "xóa thành công");
         return "redirect:/customer";
     }
-    @GetMapping("/update")
-    public String showUpdate(@RequestParam("id") int id , Model model){
-        Optional<Customer> customer = iCustomerService.findById(id);
-        CustomerDto customerDto = new CustomerDto();
-        BeanUtils.copyProperties(customer.get(),customerDto);
-        model.addAttribute("customerDto",customerDto);
-
-        return "/customer/update";
-    }
+//    @GetMapping("/update")
+//    public String showUpdate(@RequestParam("id") int id , Model model){
+//        Optional<Customer> customer = iCustomerService.findById(id);
+//        CustomerDto customerDto = new CustomerDto();
+//        BeanUtils.copyProperties(customer.get(),customerDto);
+//        model.addAttribute("customerDto",customerDto);
+//
+//        return "/customer/update";
+//    }
     @PostMapping("/update")
     public String update(@Validated @ModelAttribute("customerDto") CustomerDto customerDto ,BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
         new CustomerDto().validate(customerDto,bindingResult);
         if (bindingResult.hasFieldErrors()){
-
-            return "/customer/update";
+            model.addAttribute("modalUpdate",true);
+//redirectAttributes.addFlashAttribute("messages","vui lòng nhập đúng");
+            return "redirect:/customer";
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto,customer);

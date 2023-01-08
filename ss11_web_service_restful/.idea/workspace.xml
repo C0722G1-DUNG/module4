@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a653db3b-e3a9-4797-a90c-51d06c164fef" name="Default Changelist" comment="" />
+    <list default="true" id="a653db3b-e3a9-4797-a90c-51d06c164fef" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/controller/ShowTimeCinemaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/model/Movie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/model/ShowTimeCinema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/repository/IMovieRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/repository/IShowTimeCinemaRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/service/IGeneralService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/service/IMovieService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/service/IShowTimeCinemaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/service/impl/CinemaService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/java/com/codegym/cinema/service/impl/MovieService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../bt_them_anh_chanh/cinema/src/main/resources/templates/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/controller/QuestionContentController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/dto/QuestionContentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/model/QuestionContent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/model/QuestionType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/repository/IQuestionContentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/repository/IQuestionTypeRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/service/IQuestionContentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/service/IQuestionTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/service/impl/QuestionContentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/ket_thuc_module/src/main/java/com/codegym/module4/service/impl/QuestionTypeService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/thi/src/main/java/com/example/demo/controller/ShowTimeCinemaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/thi/src/main/java/com/example/demo/model/Movie.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/thi/src/main/java/com/example/demo/model/ShowTimeCinema.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../thi_module4/thi/src/main/resources/templates/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case_study/furama/src/main/java/com/codegym/furama/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../case_study/furama/src/main/java/com/codegym/furama/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case_study/furama/src/main/resources/templates/customer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../case_study/furama/src/main/resources/templates/customer/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../case_study/furama/src/main/resources/templates/customer/update.html" beforeDir="false" afterPath="$PROJECT_DIR$/../case_study/furama/src/main/resources/templates/customer/update.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,6 +49,8 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/exercise/blogwebservice" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -33,6 +64,7 @@
       <updated>1670233665452</updated>
       <workItem from="1670233668601" duration="3000" />
       <workItem from="1670298147868" duration="73000" />
+      <workItem from="1673171284083" duration="124000" />
     </task>
     <servers />
   </component>
@@ -40,9 +72,9 @@
     <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="548" y="153" key="FileChooserDialogImpl" timestamp="1670298202375">
+    <state x="548" y="153" key="FileChooserDialogImpl" timestamp="1673171406914">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="548" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1670298202375" />
+    <state x="548" y="153" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1673171406914" />
   </component>
 </project>

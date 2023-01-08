@@ -12,7 +12,72 @@
 <body>
 <div th:replace="/layout::header"></div>
 
-<a class="btn btn-danger" th:href="@{/customer/create}">ADD Customer</a>
+<!--<a class="btn btn-danger" th:href="@{/customer/create}">ADD Customer</a>-->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreate" data-bs-whatever="@fat">Add new Customer</button>
+<input type="hidden" id="modalAdd" th:value="${modalCreate}">
+<div class="modal fade" id="modalCreate" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/customer/create}" method="post" th:object="${customerDto}">
+
+
+                    <label th:for="nameCustomer">nameCustomer</label>
+                    <input th:field="*{nameCustomer}"><br>
+                    <p  th:errors="*{nameCustomer}" class="text-danger"></p>
+
+                    <label th:for="birthday">birthday</label>
+                    <input type="date" th:field="*{birthday}"><br>
+                    <p  th:errors="*{birthday}" class="text-danger"></p>
+
+
+                    <label th:for="gender">gender</label>
+                    <select th:field="*{gender}">
+                        <option th:value="${true}" th:text="nam"  ></option>
+                        <option th:value="${false}" th:text="nữ" ></option>
+                    </select><br>
+                    <p  th:errors="*{gender}" class="text-danger"></p>
+
+                    <label th:for="id_card">id_card</label>
+                    <input th:field="*{id_card}"><br>
+                    <p  th:errors="*{id_card}" class="text-danger"></p>
+
+                    <label th:for="phone">phone</label>
+                    <input th:field="*{phone}"><br>
+                    <p  th:errors="*{phone}" class="text-danger"></p>
+
+                    <label th:for="email">email</label>
+                    <input th:field="*{email}"><br>
+                    <p  th:errors="*{email}" class="text-danger"></p>
+
+                    <label th:for="address">address</label>
+                    <input th:field="*{address}"><br>
+                    <p  th:errors="*{address}" class="text-danger"></p>
+
+
+                    <select th:field="*{customerType}">
+                        <option th:each="iteam : ${customerTypeList} " th:text="${iteam.nameCustomerType}" th:value="${iteam.id}" ></option>
+                    </select>
+                    <input type="submit" th:value="luu">
+                    <div class="modal-footer">
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add new</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
 <span style="color: red" th:text="${messages}"></span>
 <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
@@ -57,7 +122,13 @@
             <td th:text="${customer.address}"></td>
             <td th:text="${customer.customerType.nameCustomerType}"></td>
             <td>
-                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>
+<!--                <a th:href="@{/customer/update(id=${customer.id})}" class="btn btn-primary">Update</a>-->
+
+                <!-- Button trigger modal -->
+                <button th:attr="onclick=|updateById('${customer.id}','${customer.nameCustomer}','${customer.birthday}','${customer.gender}','${customer.id_card}','${customer.phone}','${customer.email}','${customer.address}','${customer.customerType.id}')|" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
+                    Update
+                </button>
+
             </td>
             <td>
                 <!-- Button trigger modal -->
@@ -71,19 +142,19 @@
     </tbody>
 </table>
 
-<nav aria-label="Page navigation example">
-    <ul class="pagination">
-        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number-1})}" th:if="${customerList.hasPrevious()}" class="page-link">Previous</a></li>
-        <li class="col-sm-1">
-    <span th:each="i : ${#numbers.sequence(1, customerList.totalPages)}">
-        <a class="text-danger" th:if="${(customerList.number + 1) != i}"
-           th:href="@{/customer(name=${name},email=${email},nameType=${nameType},page=${i - 1})}">[[${i}]]</a>
-    <span th:unless="${(customerList.number + 1) != i}">[[${i}]]</span>
-    </span>
-        </li>
-        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number + 1})}" th:if="${customerList.hasNext()}" class="page-link" >Next</a></li>
-    </ul>
-</nav>
+<!--<nav aria-label="Page navigation example">-->
+<!--    <ul class="pagination">-->
+<!--        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number-1})}" th:if="${customerList.hasPrevious()}" class="page-link">Previous</a></li>-->
+<!--        <li class="col-sm-1">-->
+<!--    <span th:each="i : ${#numbers.sequence(1, customerList.totalPages)}">-->
+<!--        <a class="text-danger" th:if="${(customerList.number + 1) != i}"-->
+<!--           th:href="@{/customer(name=${name},email=${email},nameType=${nameType},page=${i - 1})}">[[${i}]]</a>-->
+<!--    <span th:unless="${(customerList.number + 1) != i}">[[${i}]]</span>-->
+<!--    </span>-->
+<!--        </li>-->
+<!--        <li  class="page-item"><a th:href="@{'/customer'(name=${name},email=${email},nameType=${nameType},page=${customerList.number + 1})}" th:if="${customerList.hasNext()}" class="page-link" >Next</a></li>-->
+<!--    </ul>-->
+<!--</nav>-->
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -108,6 +179,62 @@
         </div>
     </div>
 </div>
+
+<!-- Modal update -->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form  th:action="@{/customer/update}" method="post" th:object="${customerDto}">
+            <div class="modal-header">
+                <h5 class="modal-title" id="updateModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <input th:id="id" type="hidden" th:field="*{id}">
+
+                    <label th:for="nameCustomer">nameCustomer</label>
+                    <input th:id="name" th:field="*{nameCustomer}"><br>
+                    <p  th:errors="*{nameCustomer}" class="text-danger"></p>
+
+                    <label th:for="birthday">birthday</label>
+                    <input th:id="birth" type="date" th:field="*{birthday}"><br>
+
+
+                    <label th:for="gender">gender</label>
+                    <select th:id="gender" th:field="*{gender}">
+                        <option th:value="${true}" ${gender==true?"selected":""} th:text="nam" ></option>
+                        <option th:value="${false}"  ${gender==false?"selected":""} th:text="nữ" ></option>
+                    </select><br>
+
+                    <label th:for="id_card">id_card</label>
+                    <input th:id="idcard" th:field="*{id_card}"><br>
+
+                    <label th:for="phone">phone</label>
+                    <input th:id="phone" th:field="*{phone}"><br>
+
+                    <label th:for="email">email</label>
+                    <input th:field="*{email}"><br>
+
+                    <label th:for="address">address</label>
+                    <input th:id="address" th:field="*{address}"><br>
+
+
+                    <select  th:id="customerTyo"  th:field="*{customerType}">
+                        <option   th:each="iteam : ${customerTypeList} " th:text="${iteam.nameCustomerType}" th:value="${iteam.id}" ></option>
+                    </select>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    <input type="hidden" id="modalUpdate" th:value="${modalUpdate}">
+</div>
+
 </body>
 <script th:inline="javascript">
     function deleteById(id, name) {
@@ -115,6 +242,35 @@
         console.log("deleteByName" + name);
         document.getElementById("deleteById").value = id;
         document.getElementById("deleteByName").innerHTML = name;
+    }
+    function updateById(id,name,birth,gender,idCard,phone,email,address,customerType) {
+        document.getElementById("id").value =id;
+        document.getElementById("name").value =name;
+        document.getElementById("birth").value =birth;
+        document.getElementById("gender").value =gender;
+        document.getElementById("idcard").value =idCard;
+        document.getElementById("phone").value =phone;
+        document.getElementById("email").value =email;
+        document.getElementById("address").value =address;
+        document.getElementById("customerTyo").value =customerType;
+    }
+</script>
+<script>
+    let modal = document.getElementById("modalUpdate").value;
+    if (modal=='true'){
+            $('#updateModal').modal('show')
+
+    }
+</script>
+<script>
+    let modalCreate = document.getElementById("modalAdd").value;
+    if (modalCreate=='true'){
+        $(document).ready(
+            function () {
+                $('#modalCreate').appeedTo('body').modal('show')
+            }
+        )
+
     }
 </script>
 </html>
